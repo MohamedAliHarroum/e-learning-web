@@ -1,6 +1,8 @@
 package com.example.elearning.domain;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import net.minidev.json.annotate.JsonIgnore;
 import org.springframework.data.annotation.CreatedBy;
 
 import javax.persistence.*;
@@ -29,7 +31,6 @@ public class LearningPath {
     @CreatedBy
     @ManyToOne
     @JoinColumn(name = "instructor_id")
-    @NotNull
     private Instructor instructor;
 }
 

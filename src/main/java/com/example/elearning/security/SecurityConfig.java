@@ -43,14 +43,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+        http.httpBasic()
+                .and()
+                .authorizeRequests()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin()
-                .defaultSuccessUrl("/", true)
-                .and()
-                .logout()
-                .logoutUrl("/logout")
-                .deleteCookies("JSESSIONID");
+                .csrf().disable()
+                .headers().frameOptions().disable();
+//                .and()
+//                .formLogin()
+//                .defaultSuccessUrl("/", true)
+//                .and()
+//                .logout()
+//                .logoutUrl("/logout")
+//                .deleteCookies("JSESSIONID");
     }
 }

@@ -8,8 +8,8 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Data
-@NoArgsConstructor
 @Entity
+@NoArgsConstructor
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class User implements UserDetails {
     @Id
