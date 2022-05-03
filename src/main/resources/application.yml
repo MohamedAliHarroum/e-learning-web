@@ -3,8 +3,31 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
-
   datasource:
     url: jdbc:mysql://localhost:3306/e_learning
     username: root
     password: root
+  data:
+    rest:
+      base-path: /
+
+server:
+  port: 3001
+
+logging:
+  level:
+    com.example.elearning: DEBUG
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: "production"
+
+server:
+  port: 0
+
+logging:
+  level:
+    com.example.elearning: WARN

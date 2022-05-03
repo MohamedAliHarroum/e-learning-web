@@ -1,13 +1,13 @@
 package com.example.elearning.domain;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Embeddable;
 
 @Embeddable
-@Getter
-@Setter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Address {
     private String street;
     private String city;

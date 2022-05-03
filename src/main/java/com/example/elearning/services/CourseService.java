@@ -7,32 +7,32 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CourseService {
-    private CourseRepository courses;
+    private final CourseRepository courseRepository;
 
     @Autowired
-    public CourseService(CourseRepository courses) {
-        this.courses = courses;
+    public CourseService(CourseRepository courseRepository) {
+        this.courseRepository = courseRepository;
     }
 
     public Course add(Course course) {
-        return courses.save(course);
+        return courseRepository.save(course);
     }
 
     public Course get(Long id) {
-        return courses
+        return courseRepository
                 .findById(id)
                 .orElseThrow(ResourceNotFoundException::new);
     }
 
     public Iterable<Course> getAll() {
-        return courses.findAll();
+        return courseRepository.findAll();
     }
 
     public void delete(Long id) {
-        courses.deleteById(id);
+        courseRepository.deleteById(id);
     }
 
     public Course update(Course course) {
-        return courses.save(course);
+        return courseRepository.save(course);
     }
 }

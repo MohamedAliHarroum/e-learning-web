@@ -1,11 +1,14 @@
 package com.example.elearning.domain;
 
 import lombok.Data;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.Set;
 
 @Data
 @Entity
@@ -22,15 +25,18 @@ public class Course {
     @Size(min=24, message = "Description must be at least 24 characters long")
     private String description;
 
+    @CreatedBy
     @ManyToOne
     @JoinColumn(name = "instructor_id")
     @NotNull
     private Instructor instructor;
 
-    private Date createdAt;
+    @OneToMany(mappedBy = "course")
+    Set<CourseEnrollment> enrollments;
 
-    @PrePersist
-    void createdAt() {
-        this.createdAt = new Date();
-    }
+    @ManyToMany
+    private Set<LearningPath> learningPaths;
+
+    @CreatedDate
+    private Date createdAt;
 }
