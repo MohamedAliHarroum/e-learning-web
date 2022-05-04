@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/api/v1", produces = MediaType.APPLICATION_JSON_VALUE)
 public class LearningPathController {
 
-    private LearningPathService learningPathService;
+    private final LearningPathService learningPathService;
 
     @Autowired
     public LearningPathController(LearningPathService learningPathService) {

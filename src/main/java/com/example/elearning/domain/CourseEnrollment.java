@@ -1,5 +1,6 @@
 package com.example.elearning.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -15,6 +16,6 @@ public class CourseEnrollment extends Enrollment {
 
     @ManyToOne
     @JoinColumn(name = "course_id")
+    @JsonIgnore
     private Course course;
-
 }

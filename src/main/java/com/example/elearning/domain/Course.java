@@ -1,6 +1,5 @@
 package com.example.elearning.domain;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,16 +15,17 @@ import java.util.Set;
 
 @Data
 @Entity
+@NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Size(min=8, message = "Title must be at least 8 characters long")
+    @Size(min = 8, message = "Title must be at least 8 characters long")
     private String title;
 
-    @Size(min=24, message = "Description must be at least 24 characters long")
+    @Size(min = 24, message = "Description must be at least 24 characters long")
     private String description;
 
     @CreatedBy
@@ -45,4 +45,14 @@ public class Course {
     @CreatedDate
     private Date createdAt;
 
+    public Course(String title, String description,
+                  Set<CourseEnrollment> enrollments,
+                  Set<LearningPath> learningPaths,
+                  Instructor instructor) {
+        this.title = title;
+        this.description = description;
+        this.enrollments = enrollments;
+        this.learningPaths = learningPaths;
+        this.instructor = instructor;
+    }
 }

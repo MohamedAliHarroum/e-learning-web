@@ -1,12 +1,10 @@
 package com.example.elearning.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import net.minidev.json.annotate.JsonIgnore;
 import org.springframework.data.annotation.CreatedBy;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity
@@ -19,6 +17,7 @@ public class LearningPath {
     private String description;
 
     @OneToMany(mappedBy = "learningPath")
+    @JsonIgnore
     Set<PathEnrollment> enrollments;
 
     @ManyToMany
@@ -26,6 +25,7 @@ public class LearningPath {
             name = "learning_path_courses",
             joinColumns = @JoinColumn(name = "learning_path_id"),
             inverseJoinColumns = @JoinColumn(name = "course_id"))
+    @JsonIgnore
     private Set<Course> courses;
 
     @CreatedBy

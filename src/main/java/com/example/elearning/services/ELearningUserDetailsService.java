@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ELearningUserDetailsService implements UserDetailsService {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Autowired
     public ELearningUserDetailsService(UserRepository userRepository) {
@@ -19,7 +19,7 @@ public class ELearningUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findById(username).orElseThrow(
+        return userRepository.findByUsername(username).orElseThrow(
                 () ->new UsernameNotFoundException("User '" + username + "' not found")
         );
     }

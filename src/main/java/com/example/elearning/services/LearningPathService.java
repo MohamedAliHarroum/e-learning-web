@@ -1,6 +1,5 @@
 package com.example.elearning.services;
 
-import com.example.elearning.domain.Course;
 import com.example.elearning.domain.LearningPath;
 import com.example.elearning.repositories.LearningPathRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,5 +1,6 @@
 package com.example.elearning.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,7 +14,15 @@ import java.util.Collection;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class User implements UserDetails {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(unique = true)
+    private String username;
+    @Column(unique = true)
     private String email;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
     private String firstName;
     private String lastName;
@@ -22,9 +31,10 @@ public class User implements UserDetails {
     @Embedded
     private Address address;
 
-    public User(String email, String password,
+    public User(String username, String email, String password,
                 String firstName, String lastName,
                 String phone, Address address) {
+        this.username = username;
         this.email = email;
         this.password = password;
         this.firstName = firstName;
@@ -45,7 +55,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return email;
+        return username;
     }
 
     @Override
