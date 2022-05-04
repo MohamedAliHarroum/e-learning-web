@@ -1,6 +1,7 @@
 package com.example.elearning.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;
 
@@ -12,6 +13,7 @@ import java.util.Set;
 public class LearningPath {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long id;
     private String name;
     private String description;
@@ -31,6 +33,7 @@ public class LearningPath {
     @CreatedBy
     @ManyToOne
     @JoinColumn(name = "instructor_id")
+    @JsonIgnore
     private Instructor instructor;
 }
 

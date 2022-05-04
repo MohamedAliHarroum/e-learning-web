@@ -18,6 +18,10 @@ logging:
   level:
     com.example.elearning: DEBUG
 
+springdoc:
+  swagger-ui:
+    path: "/swagger-ui"
+
 ---
 
 spring:

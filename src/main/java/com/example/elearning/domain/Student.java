@@ -8,8 +8,6 @@ import java.util.Set;
 @Entity
 @Data
 @NoArgsConstructor
-@DiscriminatorValue("Student")
-@PrimaryKeyJoinColumn(name = "user_id")
 @EqualsAndHashCode(callSuper = true)
 public class Student extends User {
 
